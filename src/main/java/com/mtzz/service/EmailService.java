@@ -7,11 +7,12 @@ public class EmailService {
 
     public static void main(String[] args) throws InterruptedException {
         var emailService = new EmailService();
-        var kafkaService = new KafkaService(EmailService.class.getSimpleName()
-                                            ,"ECOMMERCE_SEND_EMAIL"
-                                            , emailService::parse);
+        try(var kafkaService = new KafkaService(EmailService.class.getSimpleName(),"ECOMMERCE_SEND_EMAIL"
+                , emailService::parse)) {
 
-        kafkaService.run();
+            kafkaService.run();
+        }
+
     }
 
     private void parse(ConsumerRecord<String, String> record)  {
