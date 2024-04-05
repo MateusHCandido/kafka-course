@@ -16,7 +16,7 @@ public class NewOrderMain {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var producer = new KafkaProducer<String, String>( properties() );
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             var key = UUID.randomUUID().toString();
             var value = key + "123, 01426871, 2100";
             var email = "Welcome! We are proccessing your order!";
@@ -36,13 +36,13 @@ public class NewOrderMain {
                 exception.printStackTrace();
             }
 
-            System.out.println("SENT SUCCESS "
+            System.out.println("SENT SUCCESS"
                     + data.topic()
-                    + "::: partition "
+                    + " | partition: "
                     + data.partition()
-                    + "/ offset "
+                    + " |offset: "
                     + data.offset()
-                    + "/ timestamp " +
+                    + " |timestamp: " +
                     data.timestamp());
         };
     }
