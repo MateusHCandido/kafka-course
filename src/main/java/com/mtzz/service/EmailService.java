@@ -8,7 +8,8 @@ public class EmailService {
     public static void main(String[] args) throws InterruptedException {
         var emailService = new EmailService();
         try(var kafkaService = new KafkaService(EmailService.class.getSimpleName(),"ECOMMERCE_SEND_EMAIL"
-                , emailService::parse)) {
+                , emailService::parse
+                , String.class)) {
 
             kafkaService.run();
         }
