@@ -2,6 +2,8 @@ package com.mtzz.service;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.util.HashMap;
+
 
 public class EmailService {
 
@@ -9,7 +11,8 @@ public class EmailService {
         var emailService = new EmailService();
         try(var kafkaService = new KafkaService(EmailService.class.getSimpleName(),"ECOMMERCE_SEND_EMAIL"
                 , emailService::parse
-                , String.class)) {
+                , String.class
+                , new HashMap<String, String>())) {
 
             kafkaService.run();
         }

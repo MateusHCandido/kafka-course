@@ -4,6 +4,8 @@ package com.mtzz.service;
 import com.mtzz.entity.Order;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FraudDetectorService {
@@ -14,7 +16,8 @@ public class FraudDetectorService {
         try(var kafkaService = new KafkaService<>(FraudDetectorService.class.getSimpleName()
                 , "ECOMMERCE_NEW_ORDER"
                 , fraudService::parse
-                , Order.class)) {
+                , Order.class
+                , Map.of())) {
 
             kafkaService.run();
         }
