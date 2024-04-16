@@ -50,21 +50,6 @@ class KafkaService<T> implements Closeable {
         }
     }
 
-    /**
-     * Generates properties for configuring a Kafka consumer.
-     * Configures the following properties:
-     * - BOOTSTRAP_SERVERS_CONFIG: Kafka bootstrap server address.
-     * - KEY_DESERIALIZER_CLASS_CONFIG: Key deserializer class for consumed messages.
-     * - VALUE_DESERIALIZER_CLASS_CONFIG: Value deserializer class for consumed messages.
-     * - GROUP_ID_CONFIG: Consumer group ID.
-     * - CLIENT_ID_CONFIG: Randomly generated client ID.
-     * - TYPE_CONFIG: Type configuration for Gson deserializer.
-     *
-     * @param type              The type class for deserialization.
-     * @param groupId           The consumer group ID.
-     * @param overrideProperties Additional properties to override or extend the default configuration.
-     * @return Properties object configured for Kafka consumer.
-     */
     private Properties getProperties(Class<T> type, String groupId, Map<String, String> overrideProperties){
         var properties = new Properties();
 
